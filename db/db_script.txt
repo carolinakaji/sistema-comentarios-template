@@ -1,0 +1,62 @@
+#Acesso:
+
+CREATE DATABASE cadastroComentario;
+
+USE cadastroComentario;
+
+----- USUARIOS -----
+
+CREATE TABLE usuarios(id INT PRIMARY KEY AUTO_INCREMENT, nome VARCHAR(50) NOT NULL, email VARCHAR(50) NOT NULL, cidade VARCHAR(50), estado VARCHAR(2) NOT NULL, senha VARCHAR(100) NOT NULL, imagem VARCHAR(100)) ENGINE=InnoDB;
+
+INSERT INTO cadastroComentario.usuarios (nome, email, cidade, estado, senha, imagem) VALUES('Maria Joaquina', 'mariajoaquina@gmail.com', 'São Roque', 'SP', '$2y$10$T8UwsKHTq.ZSU2ogrPJq0u18odjNQTrj374yz5VfD.6Ttt93z72mm', 'mariaj.jpg');
+
+INSERT INTO cadastroComentario.usuarios (nome, email, cidade, estado, senha, imagem) VALUES('Helena Fernandez', 'prof_helena@gmail.com', 'São Roque', 'SP', '$2y$10$HP0tcrefHI2GSxO1cQjaCujfTFGMxLsFctuGfBx1GkcmeqCPa5vKa', 'helenaf.jpg');
+
+INSERT INTO cadastroComentario.usuarios (nome, email, cidade, estado, senha, imagem) VALUES('Cirilo Rivera', 'cirilo@gmail.com', 'São Roque', 'SP', '$2y$10$g8NpU/iVmzFTDALre5TjReCUuQFK37LNdrYkOI74u8R1SDpmtF5jK', 'cirilor.jpg');
+
+
+----- PRODUTOS -----
+
+CREATE TABLE produtos(id INT PRIMARY KEY AUTO_INCREMENT, imagem VARCHAR(100) NOT NULL, titulo VARCHAR(50) NOT NULL, descricao VARCHAR(200) NOT NULL) ENGINE=InnoDB;
+
+INSERT INTO cadastroComentario.produtos(imagem, titulo, descricao) VALUES('01-286.jpg', 'Extratos puros','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget tortor sed eros ultricies placerat. Proin consectetur elementum felis, sit amet porta velit pharetra a.');
+
+INSERT INTO cadastroComentario.produtos(imagem, titulo, descricao) VALUES('02-286.jpg', 'Sabonetes artesanais', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget tortor sed eros ultricies placerat. Proin consectetur elementum felis, sit amet porta velit pharetra a.');
+
+INSERT INTO cadastroComentario.produtos(imagem, titulo, descricao) VALUES('03-286.jpg', 'Creme hidratante', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget tortor sed eros ultricies placerat. Proin consectetur elementum felis, sit amet porta velit pharetra a.');
+
+
+
+----- COMENTÁRIOS -----
+
+CREATE TABLE comentarios(id INT PRIMARY KEY AUTO_INCREMENT, comentario VARCHAR(500), date datetime, usuario INT, produto INT, FOREIGN KEY (usuario) REFERENCES usuarios(id), FOREIGN KEY (produto) REFERENCES produtos(id)) ENGINE=InnoDB;
+
+INSERT INTO cadastroComentario.comentarios (comentario, date,usuario, produto) VALUES ('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam at vulputate sem, sit amet eleifend nibh. Donec nec felis non est malesuada congue nec ac mi. Nulla lobortis magna urna, ac commodo urna tristique eu.','2020-01-01 10:10:10', 1, 1);
+
+INSERT INTO cadastroComentario.comentarios (comentario, date,usuario, produto) VALUES ('Donec nec felis non est malesuada congue nec ac mi. Nulla lobortis magna urna, ac commodo urna tristique eu.','2021-04-01 12:11:10', 2, 1);
+
+INSERT INTO cadastroComentario.comentarios (comentario, date,usuario, produto) VALUES ('Amet, consectetur adipiscing elit. Nullam at vulputate sem, sit amet eleifend nibh. Donec nec felis non est malesuada congue nec ac mi. Nulla lobortis magna urna, ac commodo urna tristique eu.','2021-05-01 10:10:10', 3, 2);
+
+INSERT INTO cadastroComentario.comentarios (comentario, date,usuario, produto) VALUES ('Sit amet, consectetur adipiscing elit. Nullam at vulputate sem, sit amet eleifend nibh. Donec nec felis non est malesuada congue nec.','2021-03-02 10:10:10', 1, 3);
+
+SELECT * FROM usuarios;
+SELECT * FROM comentarios;
+SELECT * FROM produtos;
+
+DROP TABLE comentarios;
+DROP TABLE produtos;
+DROP TABLE usuarios;
+
+----- LOGINS E SENHAS -----
+
+$senhaSegura = password_hash($senha, PASSWORD_DEFAULT);
+$senha = password_hash('11111111', PASSWORD_DEFAULT);
+
+mariajoaquina@gmail.com
+12345678
+
+prof_helena@gmail.com
+87456321
+
+cirilo@gmail.com
+11111111
