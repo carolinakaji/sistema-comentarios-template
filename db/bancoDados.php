@@ -50,7 +50,6 @@ function login($email, $senha)
       
       $_SESSION['email'] = $usuario['email'];
       $_SESSION['id'] = $usuario['id'];
-     // echo 'Quem logado: ' . $_SESSION['id'];
       header("location: ../index.php");
 
     }
@@ -104,14 +103,9 @@ function getComentariosProduto($id)
         
           <div class='col-10'>
             <h5>{$usuario['nome']} - {$dataEHora}</h5> 
-          <p>{$usuario['comentario']}</p>
-          <form method='post'>
-            <button type='submit' class='btn btn-warning' name='editarComentario'><i class='bi bi-pencil-fill px-4'></i></button>
-            <button type='submit' class='btn btn-danger ' name='deletarComentario'><i class='bi bi-trash-fill px-4'></i></button>
-            </form>
-          <div class='d-inline'>
+          <p>{$usuario['comentario']}</p>" . editarDeletar($usuario) ."
           
-        </div>
+
       </div>
         
       </div>
@@ -202,4 +196,14 @@ function verificaQuemEstaLogado($email)
   return $usuario[0]['nome'];
   };
 
-
+function editarDeletar($usuario){
+  if($_SESSION['email'] === $usuario['email']){
+    $editarDel = "<form method='post'>
+    <button type='submit' class='btn btn-warning' name='editarComentario'><i class='bi bi-pencil-fill px-4'></i></button>
+    <button type='submit' class='btn btn-danger ' name='deletarComentario'><i class='bi bi-trash-fill px-4'></i></button>
+    </form>";
+  } else {
+    $editarDel = '';
+  }
+    return $editarDel;
+}
