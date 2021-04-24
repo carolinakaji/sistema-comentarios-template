@@ -1,6 +1,5 @@
 <?php include('../prova-final/acoes/fazLogin.php') ?>
 
-
 <div class="row d-flex">
     <div class="col">
       <small>Digite seu login e senha:</small>
@@ -9,7 +8,6 @@
       <small class="msgLoginErro"><?php echo $msgAlerta ?></small>
     </div>
   </div>
-
 
 <form class="form-inline " method="POST" action=''>
   <label class="sr-only" for="inlineFormInputName2">Nome</label>
