@@ -151,7 +151,7 @@ function getProdutos()
     $card .= "
     <div class='col-lg-4 col-md-6 col-sm-12 my-3'>
     <div class='card' style='width: 18rem;'>
-      <img src='../src/imgs/{$produto['imagem']}' class='card-img-top'>
+      <img src='../prova-final/src/imgs/{$produto['imagem']}' class='card-img-top'>
       <div class='card-body'>
         <h5 class='card-title'>{$produto['titulo']}</h5>
         <p class='card-text'>{$produto['descricao']}</p>
