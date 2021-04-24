@@ -127,13 +127,14 @@ function update($id,$comentario)
   fecharConexao();
 }
 
-function deleteComentario($id)
+function deleteComentario($usuario)
 {
   $sql = "delete from comentarios where id = :id";
   $result = abrirConnection()->prepare($sql);
-  $result->bindValue(':id', $id);
+  $result->bindValue(':id', $usuario['id']);
   $result->execute();
   fecharConexao();
+  
 }
 
 // PRODUTOS
@@ -196,12 +197,26 @@ function verificaQuemEstaLogado($email)
   return $usuario[0]['nome'];
   };
 
+
+  function verificaIdComentario($id)
+  {
+    $sql = "select * from comentarios where id=:id";
+    $result = abrirConnection()->prepare($sql);
+    $result->bindValue(':id', $id);
+    $result->execute();
+    $comentario = $result->fetchAll(PDO::FETCH_ASSOC);
+    echo $comentario[0]['comentario'];
+    return $comentario[0]['comentario'];
+    };
+
+
 function editarDeletar($usuario){
   if($_SESSION['email'] === $usuario['email']){
     $editarDel = "<form method='post'>
     <button type='submit' class='btn btn-warning' name='editarComentario'><i class='bi bi-pencil-fill px-4'></i></button>
     <button type='submit' class='btn btn-danger ' name='deletarComentario'><i class='bi bi-trash-fill px-4'></i></button>
     </form>";
+    echo $usuario['id'] . '<br>';
   } else {
     $editarDel = '';
   }
