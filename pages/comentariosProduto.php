@@ -1,6 +1,5 @@
-<?php 
-include __DIR__ . '/../config.php';
+<?php
 
-include PATH_ROOT . "/components/header.php";
-include PATH_ROOT . "/components/comentarios.php";
-include PATH_ROOT . "/components/footer.php";
+include_once '../pages.php';
+
+echo listarComentarioProduto();

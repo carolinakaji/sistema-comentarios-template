@@ -50,7 +50,7 @@ function login($email, $senha)
       
       $_SESSION['email'] = $usuario['email'];
       $_SESSION['id'] = $usuario['id'];
-      header("location: ../index.php");
+      header("location: ../prova-final/index.php");
 
     }
   }
@@ -155,7 +155,7 @@ function getProdutos()
       <div class='card-body'>
         <h5 class='card-title'>{$produto['titulo']}</h5>
         <p class='card-text'>{$produto['descricao']}</p>
-        <a href='../pages/comentariosProduto.php?id={$produto['id']}' class='btn btn-primary'>Comentários</a>
+        <a href='../prova-final/pages/comentariosProduto.php?id={$produto['id']}' class='btn btn-primary'>Comentários</a>
       </div>
     </div>
   </div>";
