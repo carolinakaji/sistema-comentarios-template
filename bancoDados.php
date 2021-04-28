@@ -146,7 +146,7 @@ function getComentariosProduto($id, $logged)
         <div class='col-10'>
             <h5>{$usuario['nome']} - {$dataEHora}</h5> 
             <p>{$usuario['comentario']}</p> 
-            " . editaDeleta($usuario['email'], $logged, $usuario['id'], $id) . "
+            " . editaDeleta($usuario['email'], $logged, $usuario['id'], $_GET['idP']) . "
         </div>  
       </div>
       <hr>
@@ -165,14 +165,13 @@ function getComentariosProduto($id, $logged)
  * @param string $comentario
  * @return string
  */
-function editaDeleta($userLogado, $logged, $id, $comentarioId){
+function editaDeleta($userLogado, $logged, $id, $idProduto){
   if($logged && $_SESSION['email'] === $userLogado){
     $onclick = "onclick=\"return confirm('Deseja excluir o comentário: {$id})\"";
     return "
     <div class='text-right'> 
-     <a  class='btn btn-warning' name='editarComentario'><i class='bi bi-pencil-fill px-4'></i></a>
-    <a  class='btn btn-danger ' href='./acoes/deletar.php?id={$id}' {$onclick}><i class='bi bi-trash-fill px-4'></i></a>
- 
+    <a  class='btn btn-warning' name='editarComentario'><i class='bi bi-pencil-fill px-4'></i></a>
+    <a  class='btn btn-danger ' href='./acoes/deletar.php?idP={$idProduto}&id={$id}' {$onclick}><i class='bi bi-trash-fill px-4'></i></a>
     </div>"
     ;
   }
@@ -250,7 +249,7 @@ function getProdutos()
       <div class='card-body'>
         <h5 class='card-title'>{$produto['titulo']}</h5>
         <p class='card-text'>{$produto['descricao']}</p>
-        <a href='./comentariosProduto.php?id={$produto['id']}' class='btn btn-primary'>Comentários</a>
+        <a href='./comentariosProduto.php?idP={$produto['id']}' class='btn btn-primary'>Comentários</a>
       </div>
     </div>
   </div>";

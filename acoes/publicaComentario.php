@@ -14,7 +14,7 @@ include_once __DIR__  . "/../bancoDados.php";
 function publicarComentario(){
 
   $msgAlertaComentario = '';
-  $idProduto = $_GET['id'];
+  $idProduto = $_GET['idP'];
   if (isset($_POST['publicar'])) {
     if ($_POST['comentario'] == '') {
       $msgAlertaComentario = "O campo deve conter texto.";

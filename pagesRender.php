@@ -66,9 +66,9 @@ function produtoComentarios(){
     'titulo' => 'BotanicShop - Comentários dos Produtos',
     'header' => render('components/header.html'),
     'login' => isLogado(),
-    'produtoDescricao' => getProdutoId($_GET['id']),
+    'produtoDescricao' => getProdutoId($_GET['idP']),
     'caixaComentario' => publicarComentario(),
-    'listaComentarios' => getComentariosProduto($_GET['id'],isset($_SESSION['email'])),
+    'listaComentarios' => getComentariosProduto($_GET['idP'],isset($_SESSION['email'])),
     'footer' => render('components/footer.html'),
     'nome' => 'Carol Kaji'
   ];
@@ -85,6 +85,7 @@ function produtoComentarios(){
  * @return string
  */
 function cadastroUsuario(){
+  $route = $_GET['url']??'cadastroUsuario';
   $tags = [
     'titulo' => 'BotanicShop - Cadastro de Usuarios',
     'header' => render('components/header.html'),
@@ -93,8 +94,11 @@ function cadastroUsuario(){
     'footer' => render('components/footer.html'),
     'nome' => 'Carol Kaji'
   ];
-
-return render('pages/cadastroUsuario.html', $tags);
+  if(file_exists("pages/{$route}.html")){
+    return render("pages/{$route}.html", $tags);
+  } else {
+    return render('pages/cadastroUsuario.html', $tags);
+  }
 }
 
 
