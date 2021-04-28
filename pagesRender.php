@@ -7,12 +7,14 @@ include_once 'acoes/cadastrarUsuario.php';
 include_once 'acoes/publicaComentario.php';
 include_once __DIR__ . "/config.php";
 
+
 /**
  * Renderiza a página home com a lista de produtos
  *
  * @return string
  */
 function listarProdutos(){
+  $route = $_GET['url']??'home';
   $tags = [
     'titulo' => 'BotanicShop - Produtos',
     'header' => render('components/header.html'),
@@ -23,7 +25,12 @@ function listarProdutos(){
     'nome' => 'Carol Kaji'
   ];
 
-return render('pages/home.html', $tags);
+  if(file_exists("pages/{$route}.html")){
+    return render("pages/{$route}.html", $tags);
+  } else {
+    return render("pages/home.html", $tags);
+  }
+
 }
 /**
  * Renderiza a página usuario com a área do usuário logada
@@ -31,6 +38,7 @@ return render('pages/home.html', $tags);
  * @return string
  */
 function areaUsuario(){
+  $route = $_GET['url']??'usuario';
   $tags = [
     'titulo' => 'BotanicShop - Produtos',
     'header' => render('components/header.html'),
@@ -40,8 +48,11 @@ function areaUsuario(){
     'footer' => render('components/footer.html'),
     'nome' => 'Carol Kaji'
   ];
-
-return render('pages/usuario.html', $tags);
+  if(file_exists("pages/{$route}.html")){
+    return render("pages/{$route}.html", $tags);
+  } else {
+    return render("pages/usuario.html", $tags);
+  }
 }
 
 /**
@@ -50,6 +61,7 @@ return render('pages/usuario.html', $tags);
  * @return string
  */
 function produtoComentarios(){
+  $route = $_GET['url']??'comentarios';
   $tags = [
     'titulo' => 'BotanicShop - Comentários dos Produtos',
     'header' => render('components/header.html'),
@@ -60,8 +72,11 @@ function produtoComentarios(){
     'footer' => render('components/footer.html'),
     'nome' => 'Carol Kaji'
   ];
-
-return render('pages/comentarios.html', $tags);
+  if(file_exists("pages/{$route}.html")){
+    return render("pages/{$route}.html", $tags);
+  } else {
+    return render('pages/comentarios.html', $tags);
+  }
 }
 
 /**
