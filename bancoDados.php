@@ -3,6 +3,7 @@ date_default_timezone_set('America/Sao_Paulo');
 include_once __DIR__ . "/config.php";
 include_once "pagesRender.php";
 include_once ('acoes/deletar.php');
+include_once ('acoes/editar.php');
 session_start();
 
 /**
@@ -167,11 +168,11 @@ function getComentariosProduto($id, $logged)
  */
 function editaDeleta($userLogado, $logged, $id, $idProduto){
   if($logged && $_SESSION['email'] === $userLogado){
-    $onclick = "onclick=\"return confirm('Deseja excluir o comentário: {$id})\"";
+
     return "
     <div class='text-right'> 
-    <a  class='btn btn-warning' name='editarComentario'><i class='bi bi-pencil-fill px-4'></i></a>
-    <a  class='btn btn-danger ' href='./acoes/deletar.php?idP={$idProduto}&id={$id}' {$onclick}><i class='bi bi-trash-fill px-4'></i></a>
+    <a  class='btn btn-warning' name='editarComentario' href='./acoes/editar.php?idP={$idProduto}&id={$id}'><i class='bi bi-pencil-fill px-4'></i></a>
+    <a  class='btn btn-danger ' href='./acoes/deletar.php?idP={$idProduto}&id={$id}'><i class='bi bi-trash-fill px-4'></i></a>
     </div>"
     ;
   }
@@ -186,7 +187,7 @@ function editaDeleta($userLogado, $logged, $id, $idProduto){
  * @param string $comentario
  * @return void
  */
-function update($id,$comentario)
+function updateComentario($id,$comentario)
 {
   $sql = "update comentarios set (comentario=:comentario) where id=:id";
   $var = abrirConnection();
